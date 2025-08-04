@@ -330,30 +330,38 @@
 					</div>
 				</div>
 			{:else}
-				<div class="mb-4">
-					<div class="flex items-center gap-2">
-						<MaterialSymbolsTranslateRounded class="h-6 w-6" />
-						<select
-							class="w-full rounded-md bg-[#262626] px-4 py-2"
-							onchange={({ currentTarget }) => {
-								setLocale(currentTarget.value as Locale);
-							}}
-							bind:value={locale}
+				<div class="mt-4 border-t border-white/10 pt-4">
+					<div class="flex flex-col gap-1.5 pl-4">
+						<div
+							class="flex items-center gap-2 rounded-md px-3 py-1 text-sm transition-colors hover:bg-[#ff6542]/10 hover:text-[#ff8a65]"
 						>
-							{#each Object.entries(locales) as [locale, label]}
-								<option value={locale}>{label}</option>
-							{/each}
-						</select>
+							<MaterialSymbolsTranslateRounded class="h-5 w-5" />
+							<select
+								class="w-full rounded-md border-1 border-white/30 bg-[#262626] px-4 py-1 text-sm"
+								onchange={({ currentTarget }) => {
+									setLocale(currentTarget.value as Locale);
+								}}
+								bind:value={locale}
+							>
+								{#each Object.entries(locales) as [locale, label]}
+									<option value={locale}>{label}</option>
+								{/each}
+							</select>
+						</div>
+						<div
+							class="flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-[#ff6542]/10 hover:text-[#ff8a65]"
+						>
+							<Switch label={m.spoiler_mode()} bind:checked={settings.spoilerMode} />
+						</div>
+						<hr class="border-white/10" />
+						<a
+							href={data.authURL}
+							class="flex w-full cursor-pointer items-center justify-center rounded-md border-1 border-[#ff6542] bg-[#ff6542]/10 px-4 py-2 text-sm text-[#ff6542] transition-colors duration-300 hover:bg-[#ff6542]/20"
+							onclick={toggleMobileMenu}
+						>
+							{m.sign_in()}
+						</a>
 					</div>
-					<div class="mt-4 border-t border-white/10 pt-4"></div>
-					<div class="mt-2 flex items-center gap-2">
-						<Switch label={m.spoiler_mode()} bind:checked={settings.spoilerMode} />
-					</div>
-					<a
-						href={data.authURL}
-						class="flex w-full cursor-pointer items-center justify-center rounded-md border-1 border-[#ff6542] bg-[#ff6542]/10 px-4 py-2 text-lg text-[#ff6542] transition-colors duration-300 hover:bg-[#ff6542]/20"
-						onclick={toggleMobileMenu}>{m.sign_in()}</a
-					>
 				</div>
 			{/if}
 		</nav>
