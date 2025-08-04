@@ -120,8 +120,25 @@
 
 <div class="flex min-h-dvh flex-col">
 	<header
-		class="flex items-center justify-between border-b-1 border-white/20 bg-gradient-to-br from-[#363636] to-[#262626] px-4 py-4"
+		class="relative flex items-center justify-between border-b-1 border-white/20 bg-gradient-to-br from-[#363636] to-[#262626] px-4 py-4"
 	>
+		<div class="absolute inset-0 hidden items-center justify-center md:flex">
+			<nav class="flex flex-1 items-center justify-center gap-1">
+				{#each navigation as { href, label }}
+					<a
+						{href}
+						class={[
+							'rounded-md px-4 py-2 transition-all duration-200',
+							isActive(href)
+								? 'bg-[#ff6542]/20 font-semibold shadow-[inset_0_0_0_2px_rgba(255,101,66,0.3)]'
+								: 'hover:scale-105 hover:bg-[#ff6542]/10 hover:text-[#ff8a65]',
+							'focus:bg-[#ff6542]/10 focus:text-[#ff6542] focus:ring-2 focus:ring-[#ff6542] focus:outline-none'
+						]}>{label()}</a
+					>
+				{/each}
+			</nav>
+		</div>
+
 		<div class="flex items-center gap-4">
 			<a
 				href="/"
@@ -140,21 +157,6 @@
 				<MaterialSymbolsMenuRounded class="h-8 w-8" />
 			{/if}
 		</button>
-
-		<nav class="hidden flex-1 items-center justify-center gap-1 md:flex">
-			{#each navigation as { href, label }}
-				<a
-					{href}
-					class={[
-						'rounded-md px-4 py-2 transition-all duration-200',
-						isActive(href)
-							? 'bg-[#ff6542]/20 font-semibold shadow-[inset_0_0_0_2px_rgba(255,101,66,0.3)]'
-							: 'hover:scale-105 hover:bg-[#ff6542]/10 hover:text-[#ff8a65]',
-						'focus:bg-[#ff6542]/10 focus:text-[#ff6542] focus:ring-2 focus:ring-[#ff6542] focus:outline-none'
-					]}>{label()}</a
-				>
-			{/each}
-		</nav>
 
 		{#if data.user}
 			<div class="user-menu relative hidden md:block">
