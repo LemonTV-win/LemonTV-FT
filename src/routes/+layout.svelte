@@ -150,7 +150,7 @@
 			<GameSelect />
 		</div>
 
-		<button class="lg:hidden" onclick={toggleMobileMenu}>
+		<button class="cursor-pointer lg:hidden" onclick={toggleMobileMenu}>
 			{#if mobileMenuOpen}
 				<MaterialSymbolsCloseRounded class="h-8 w-8" />
 			{:else}
