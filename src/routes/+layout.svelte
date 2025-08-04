@@ -3,12 +3,11 @@
 	import { goto } from '$app/navigation';
 
 	import { m } from '$lib/paraglide/messages.js';
-	import { setLocale, type Locale, getLocale } from '$lib/paraglide/runtime';
+	import { getLocale } from '$lib/paraglide/runtime';
 	import MaterialSymbolsMenuRounded from '~icons/material-symbols/menu-rounded';
 	import MaterialSymbolsCloseRounded from '~icons/material-symbols/close-rounded';
 	import MaterialSymbolsLogoutRounded from '~icons/material-symbols/logout-rounded';
 	import MaterialSymbolsSettingsRounded from '~icons/material-symbols/settings-rounded';
-	import MaterialSymbolsTranslateRounded from '~icons/material-symbols/translate-rounded';
 	import MaterialSymbolsAdminPanelSettingsRounded from '~icons/material-symbols/admin-panel-settings-rounded';
 	import IconDiscord from '~icons/simple-icons/discord';
 	import IconGithub from '~icons/simple-icons/github';
@@ -20,6 +19,7 @@
 	import { page } from '$app/state';
 	import { SITE_CANONICAL_HOST, SAROASIS_URL_EN, SAROASIS_URL_ZH } from '$lib/consts';
 	import GameSelect from './GameSelect.svelte';
+	import LanguageSelect from './LanguageSelect.svelte';
 
 	let { data, children }: LayoutProps = $props();
 
@@ -30,22 +30,6 @@
 		{ href: '/players', label: m.players },
 		{ href: '/community', label: m.community }
 	] as const;
-
-	const locales: Record<Locale, string> = {
-		en: 'English',
-		ja: '日本語',
-		zh: '简体中文',
-		'zh-tw': '繁體中文'
-		// es: 'Español',
-		// ko: '한국어',
-		// 'pt-br': 'Português',
-		// de: 'Deutsch',
-		// fr: 'Français',
-		// ru: 'Русский',
-		// vi: 'Tiếng Việt',
-		// id: 'Bahasa Indonesia',
-		// 'uk-ua': 'Українська'
-	};
 
 	let locale = $state(getLocale());
 	let mobileMenuOpen = $state(false);
@@ -123,7 +107,7 @@
 		class="relative flex items-center justify-between border-b-1 border-white/20 bg-gradient-to-br from-[#363636] to-[#262626] px-4 py-4"
 	>
 		<div class="absolute inset-0 hidden items-center justify-center lg:flex">
-			<nav class="flex flex-1 items-center justify-center gap-1">
+			<nav class="flex items-center justify-center gap-1">
 				{#each navigation as { href, label }}
 					<a
 						{href}
@@ -147,7 +131,7 @@
 				<img src="/lemon.png" alt="LemonTV" class="h-10 w-10" />
 				LemonTV
 			</a>
-			<GameSelect />
+			<GameSelect class="hidden lg:flex" />
 		</div>
 
 		<button class="cursor-pointer lg:hidden" onclick={toggleMobileMenu}>
@@ -190,22 +174,8 @@
 								{m.admin_panel()}
 							</a>
 						{/if}
-						<div
-							class="flex cursor-pointer items-center gap-2 px-4 py-1 text-sm transition-colors hover:bg-[#ff6542]/10 hover:text-[#ff8a65]"
-						>
-							<MaterialSymbolsTranslateRounded class="h-5 w-5" />
-							<select
-								class="w-full rounded-md border-1 border-white/30 bg-[#262626] px-4 py-1 text-sm"
-								onchange={({ currentTarget }) => {
-									setLocale(currentTarget.value as Locale);
-								}}
-								bind:value={locale}
-							>
-								{#each Object.entries(locales) as [locale, label]}
-									<option value={locale}>{label}</option>
-								{/each}
-							</select>
-						</div>
+						<hr class="border-white/10" />
+						<LanguageSelect class="w-full px-4 py-2" compact />
 						<div class="flex items-center px-4 py-2 hover:bg-[#ff6542]/10">
 							<Switch label={m.spoiler_mode()} bind:checked={settings.spoilerMode} />
 						</div>
@@ -229,24 +199,11 @@
 				{/if}
 			</div>
 		{:else}
-			<div class="hidden items-center gap-2 lg:flex">
-				<div class="flex items-center gap-2">
-					<MaterialSymbolsTranslateRounded class="h-6 w-6" />
-					<select
-						class="rounded-md border-white/30 bg-[#262626] py-1 pr-7 pl-3"
-						onchange={({ currentTarget }) => {
-							setLocale(currentTarget.value as Locale);
-						}}
-						bind:value={locale}
-					>
-						{#each Object.entries(locales) as [locale, label]}
-							<option value={locale}>{label}</option>
-						{/each}
-					</select>
-				</div>
+			<div class="hidden items-stretch gap-2 lg:flex">
+				<LanguageSelect />
 				<a
 					href={data.authURL}
-					class="rounded-md border-1 border-[#ff6542] bg-[#ff6542]/10 px-4 py-1 text-[#ff6542] transition-colors duration-300 hover:bg-[#ff6542]/20"
+					class="z-50 cursor-pointer rounded-md border-1 border-[#ff6542] bg-[#ff6542]/10 px-4 py-2 text-[#ff6542] transition-colors duration-300 hover:bg-[#ff6542]/20"
 					>{m.sign_in()}</a
 				>
 			</div>
@@ -257,11 +214,13 @@
 		<nav
 			class="flex flex-col border-b-1 border-white/20 bg-gradient-to-br from-[#363636] to-[#262626] px-3 py-4 lg:hidden"
 		>
+			<GameSelect class="w-full" iconOnly={false} />
+			<hr class="my-4 border-white/10" />
 			{#each navigation as { href, label }}
 				<a
 					{href}
 					class={[
-						'rounded-md px-3 py-2 text-lg transition-all duration-200',
+						'ml-4 rounded-md px-3 py-2 text-lg transition-all duration-200',
 						isActive(href)
 							? 'bg-[#ff6542]/20 text-[#ff6542] shadow-[inset_0_0_0_2px_rgba(255,101,66,0.3)]'
 							: 'hover:scale-105 hover:bg-[#ff6542]/10 hover:text-[#ff8a65]',
@@ -295,22 +254,7 @@
 								{m.admin_panel()}
 							</a>
 						{/if}
-						<div
-							class="flex items-center gap-2 rounded-md px-3 py-1 text-sm transition-colors hover:bg-[#ff6542]/10 hover:text-[#ff8a65]"
-						>
-							<MaterialSymbolsTranslateRounded class="h-5 w-5" />
-							<select
-								class="w-full rounded-md border-1 border-white/30 bg-[#262626] px-4 py-1 text-sm"
-								onchange={({ currentTarget }) => {
-									setLocale(currentTarget.value as Locale);
-								}}
-								bind:value={locale}
-							>
-								{#each Object.entries(locales) as [locale, label]}
-									<option value={locale}>{label}</option>
-								{/each}
-							</select>
-						</div>
+						<LanguageSelect class="w-full" />
 						<div
 							class="flex items-center gap-2 rounded-md px-3 py-2 transition-colors hover:bg-[#ff6542]/10 hover:text-[#ff8a65]"
 						>
@@ -332,22 +276,7 @@
 			{:else}
 				<div class="mt-4 border-t border-white/10 pt-4">
 					<div class="flex flex-col gap-1.5 pl-4">
-						<div
-							class="flex items-center gap-2 rounded-md px-3 py-1 text-sm transition-colors hover:bg-[#ff6542]/10 hover:text-[#ff8a65]"
-						>
-							<MaterialSymbolsTranslateRounded class="h-5 w-5" />
-							<select
-								class="w-full rounded-md border-1 border-white/30 bg-[#262626] px-4 py-1 text-sm"
-								onchange={({ currentTarget }) => {
-									setLocale(currentTarget.value as Locale);
-								}}
-								bind:value={locale}
-							>
-								{#each Object.entries(locales) as [locale, label]}
-									<option value={locale}>{label}</option>
-								{/each}
-							</select>
-						</div>
+						<LanguageSelect class="w-full" />
 						<div
 							class="flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-[#ff6542]/10 hover:text-[#ff8a65]"
 						>

@@ -15,16 +15,22 @@
 		onselect,
 		children,
 		class: className = '',
+		optionClass,
 		iconOnly = false,
-		isOpen = $bindable(false)
+		isOpen = $bindable(false),
+		selectIcon,
+		showDefaultSelectIcon = true
 	}: {
 		value: string;
 		placeholder?: string;
 		children: Snippet<[]>;
 		onselect: (value: string) => void;
 		class?: string;
+		optionClass?: string;
 		iconOnly?: boolean;
 		isOpen?: boolean;
+		selectIcon?: Snippet<[]>;
+		showDefaultSelectIcon?: boolean;
 	} = $props();
 
 	let options: Option[] = $state([]);
@@ -77,7 +83,8 @@
 	<button
 		class={[
 			'flex w-full cursor-pointer items-center rounded-md border border-white/20 bg-gradient-to-br from-[#363636] to-[#262626] py-2.5 text-left text-base text-white transition-all duration-200 hover:bg-[#ff6542]/10 hover:text-[#ff8a65] focus:border-[#ff6542] focus:ring-2 focus:ring-[#ff6542] focus:outline-none',
-			iconOnly && !isOpen ? 'justify-center px-2.5' : 'justify-between px-3'
+			iconOnly && !isOpen ? 'justify-center px-2.5' : 'justify-between px-3',
+			optionClass
 		]}
 		onclick={toggleDropdown}
 		aria-haspopup="listbox"
@@ -87,6 +94,10 @@
 			{#if selectedIcon}
 				<span class="inline-flex flex-shrink-0 items-center text-white/80">
 					{@render selectedIcon()}
+				</span>
+			{:else if selectIcon}
+				<span class="inline-flex flex-shrink-0 items-center text-white/80">
+					{@render selectIcon()}
 				</span>
 			{/if}
 			<span
@@ -131,11 +142,16 @@
 			'flex cursor-pointer items-center gap-2 px-3 py-2.5 text-white transition-colors hover:bg-[#ff6542]/10 hover:text-[#ff8a65] focus:bg-[#ff6542]/10 focus:text-[#ff6542] focus:outline-none',
 			value === option.value
 				? 'bg-[#ff6542]/20 text-[#ff6542] shadow-[inset_0_0_0_2px_rgba(255,101,66,0.3)]'
-				: ''
+				: '',
+			optionClass
 		]}
 	>
 		{#if option.icon}
 			<span class="inline-flex items-center">{@render option.icon()}</span>
+		{:else if selectIcon}
+			<span class="inline-flex items-center" class:opacity-0={!showDefaultSelectIcon}
+				>{@render selectIcon()}</span
+			>
 		{/if}
 		{option.label}
 	</li>
@@ -145,8 +161,8 @@
 	class={[
 		'relative font-sans transition-all duration-200 ease-in-out',
 		className,
-		!hasWidthClass && !(iconOnly && !isOpen) ? 'w-64' : '', // Default width
-		iconOnly && !isOpen ? 'w-12' : '' // Collapsed iconOnly width
+		!hasWidthClass && !(iconOnly && !isOpen) ? 'w-fit' : '', // Default width
+		iconOnly && !isOpen ? 'w-fit' : '' // Collapsed iconOnly width
 	]}
 	bind:this={selectElement}
 >

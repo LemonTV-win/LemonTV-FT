@@ -2,17 +2,19 @@
 	import { m } from '$lib/paraglide/messages.js';
 	import IconSelect from '$lib/components/ui/IconSelect.svelte';
 	import IconOption from '$lib/components/ui/IconOption.svelte';
+
+	let { class: className = '', iconOnly = true }: { class?: string; iconOnly?: boolean } = $props();
 </script>
 
 <IconSelect
-	class="w-fit "
 	value="fate_trigger"
 	onselect={(value: string) => {
 		if (value === 'strinova') {
 			window.location.href = 'https://lemontv.win/';
 		}
 	}}
-	iconOnly
+	{iconOnly}
+	class={className}
 >
 	<IconOption label={m.fate_trigger()} value="fate_trigger">
 		<img
