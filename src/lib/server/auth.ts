@@ -82,3 +82,10 @@ export async function fetchPublicKey(
 		throw new JWKSError('Failed to import JWK', error as Error);
 	}
 }
+
+export function constructAuthURL(endpoint: URL, url: URL) {
+	const authURL = new URL(endpoint);
+	authURL.searchParams.set('redirect_uri', `${url.origin}/auth/callback`);
+	authURL.searchParams.set('next', url.pathname);
+	return authURL.toString();
+}

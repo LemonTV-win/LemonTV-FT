@@ -17,8 +17,12 @@
 	"Saroasis": "Saroasis Studio (Saros Network Technology)",
 	"fate_trigger": "Fate Trigger",
 	"sign_in": "Sign In",
-	"sign_up": "Sign Up",
 	"footer_fan_made": "A fan-made eSports media platform created and maintained by {linkStart}passionate Fate Trigger players{linkEnd}. We're dedicated to bringing you the latest news, events, and community content from the world of Fate Trigger.",
 	"homepage_description": "A community-curated Esports platform made by passionate Fate Trigger players. Watch live matches, follow tournaments, explore player stats, and stay up to date with the latest news.",
-	"strinova": "Strinova"
+	"strinova": "Strinova",
+	"welcome_to_lemon_tv": "Welcome to LemonTV",
+	"hero_description": "Watch the latest matches and highlights from the world of Awakeners.",
+	"watch_live": "Watch Live",
+	"sign_up": "Sign Up",
+	"sign_up_description": "Create an account to join the community!"
 }
