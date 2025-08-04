@@ -22,5 +22,7 @@
 	"hero_description": "觀看先覺者們的最新比賽和精彩片段",
 	"watch_live": "觀賽",
 	"sign_up": "註冊",
-	"sign_up_description": "創建帳戶並加入社群！"
+	"sign_up_description": "創建帳戶並加入社群！",
+	"finished": "已結束",
+	"view_all_events": "查看所有賽事"
 }

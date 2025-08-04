@@ -22,5 +22,7 @@
 	"hero_description": "观看先觉者们的最新比赛和精彩片段",
 	"watch_live": "观赛",
 	"sign_up": "注册",
-	"sign_up_description": "创建账号并加入社区！"
+	"sign_up_description": "创建账号并加入社区！",
+	"finished": "已结束",
+	"view_all_events": "查看所有赛事"
 }

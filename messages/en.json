@@ -24,5 +24,7 @@
 	"hero_description": "Watch the latest matches and highlights from the world of Awakeners.",
 	"watch_live": "Watch Live",
 	"sign_up": "Sign Up",
-	"sign_up_description": "Create an account to join the community!"
+	"sign_up_description": "Create an account to join the community!",
+	"finished": "Finished",
+	"view_all_events": "View All Events"
 }

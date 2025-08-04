@@ -1,10 +1,139 @@
 <script lang="ts">
+	import EventCard from '$lib/components/EventCard.svelte';
+	import { m } from '$lib/paraglide/messages';
 	import type { PageProps } from './$types';
 	import WelcomeHero from './WelcomeHero.svelte';
 
 	let { data }: PageProps = $props();
+
+	let sortedEvents = $derived(
+		data.events.toSorted((a, b) => {
+			return (
+				1 * (new Date(b.date.split('/')[0]).getTime() - new Date(a.date.split('/')[0]).getTime())
+			);
+		})
+	);
+
+	let finishedEvents = $derived(
+		sortedEvents.filter((event) => event.status === 'finished').slice(0, 2)
+	);
 </script>
 
 {#if !data.user}
 	<WelcomeHero signUpURL={data.authURL} />
 {/if}
+
+<main class="mx-auto grid max-w-screen-lg gap-6 p-4 sm:gap-10 md:grid-cols-[1fr_auto]">
+	<section class="flex flex-col">
+		<h2 class="my-5 text-2xl font-bold">
+			<a href="/events" class="transition-all duration-200 hover:opacity-80">
+				{m.events()}
+			</a>
+		</h2>
+		<!-- 
+		<section class="flex flex-col gap-4">
+			{#if ongoingEvents.length > 0}
+				<ul class="flex flex-col gap-2">
+					{#each ongoingEvents as event, i (i)}
+						<EventCard {event} />
+					{/each}
+				</ul>
+			{/if}
+
+			{#if upcomingEvents.length > 0}
+				<h3 class="mb-4 text-xl font-bold">{m.upcoming()}</h3>
+				<ul class="flex flex-col gap-2">
+					{#each upcomingEvents as event, i (i)}
+						<EventCard {event} />
+					{/each}
+				</ul>
+			{/if}
+
+
+		</section> -->
+
+		<section>
+			<h3 class="mb-4 text-xl font-bold">{m.finished()}</h3>
+			<ul class="glass-card-container">
+				{#each finishedEvents as event, i (i)}
+					<li>
+						<EventCard {event} />
+					</li>
+				{/each}
+			</ul>
+			<a href="/events" class="glass-card-bottom-button">
+				{m.view_all_events()}
+			</a>
+		</section>
+	</section>
+	<!-- 
+	<div class="flex flex-col">
+		<h2 class="my-5 text-2xl font-bold">{m.rankings()}</h2>
+		<section class="flex flex-col">
+			<h3 class="mb-4 text-xl font-bold">{m.teams()}</h3>
+			<ul class="glass-card-container">
+				{#each data.teams
+					.toSorted((a, b) => (b.wins ?? 0) - (a.wins ?? 0))
+					.slice(0, 5) as team (team.slug)}
+					<li>
+						<a
+							class={['grid grid-cols-[1fr_auto] items-center gap-2 px-4 py-2', 'glass-card']}
+							href={`/teams/${team.slug}`}
+						>
+							<span class="flex items-baseline gap-2 text-white">
+								<span
+									class={[
+										'flex h-5 w-5 items-center justify-center bg-gray-700 text-sm text-gray-400',
+										team.rank === 1 && 'bg-yellow-500 text-white',
+										team.rank === 2 && 'bg-neutral-500 text-white',
+										team.rank === 3 && 'bg-red-500 text-white'
+									]}
+								>
+									{team.rank}</span
+								>
+								{team.name}
+								<span class="text-xs text-gray-400" title={m.wins()}>{team.region}</span>
+							</span>
+							<span class="font-semibold text-yellow-300" title={m.wins()}>{team.wins}</span>
+						</a>
+					</li>
+				{/each}
+			</ul>
+			<a href="/teams" class="glass-card-bottom-button text-sm">{m.view_all_teams()}</a>
+		</section>
+
+		<div class="mt-4 flex flex-col">
+			<h3 class="my-4 text-xl font-bold">{m.players()}</h3>
+			<ul class="glass-card-container">
+				{#each data.players
+					.toSorted((a, b) => b.rating - a.rating)
+					.slice(0, 5) as player (player.id)}
+					<li>
+						<a
+							href={`/players/${player.id}`}
+							class={['grid grid-cols-[1fr_auto] items-center gap-2 px-4 py-2', 'glass-card']}
+						>
+							<span class="flex items-baseline gap-2 text-white">
+								{#each player.nationalities as nationality, idx (idx)}
+									<NationalityFlag {nationality} />
+								{/each}
+								{player.name}
+								{#if player.teams.length > 0}
+									<span class="text-xs text-gray-400" title={m.teams()}>
+										{player.teams[0]}
+									</span>
+								{/if}
+							</span>
+							<span class="flex items-center gap-2">
+								<span class="font-semibold text-yellow-300" title={m.rating()}>
+									{player.rating.toFixed(2)}
+								</span>
+							</span>
+						</a>
+					</li>
+				{/each}
+			</ul>
+			<a href="/players" class="glass-card-bottom-button text-sm">{m.view_all_players()}</a>
+		</div>
+	</div> -->
+</main>
