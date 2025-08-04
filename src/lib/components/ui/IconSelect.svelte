@@ -15,7 +15,8 @@
 		onselect,
 		children,
 		class: className = '',
-		iconOnly = false
+		iconOnly = false,
+		isOpen = $bindable(false)
 	}: {
 		value: string;
 		placeholder?: string;
@@ -23,12 +24,12 @@
 		onselect: (value: string) => void;
 		class?: string;
 		iconOnly?: boolean;
+		isOpen?: boolean;
 	} = $props();
 
 	let options: Option[] = $state([]);
 	setContext('options', options);
 
-	let isOpen = $state(false);
 	let selectElement: HTMLDivElement | undefined = $state(undefined);
 
 	const selectedLabel = $derived.by(() => {
