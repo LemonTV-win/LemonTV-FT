@@ -24,7 +24,7 @@
 	<IconOption label={m.strinova()} value="strinova">
 		<img
 			src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAALVBMVEUAAAAAAABHcEwAAAAAAAAAAAAAAAD/bC9AGwsfDQX1Zy3mYCrPVyZ0MRWhQx1SlF6FAAAAB3RSTlP/8QCjCgUO0RqAqwAAAOpJREFUOI19k1EWhSAIRDErMLP9L/cpgqLlmy+PcxsBDbbTO1jI+X2Dc+VW7eDbGkNfkq489Hy8lLg6YI9HJS60gEkQIvurhKzA/jfwFCX2vwE9fwJab0/qfu84JwTeSZAS+3kzYhOVI6gC8j3AbfxaAwnA+aMvRRIDNTkOvnZBBcBJZNskegE0zuFRQDfiOIeIcQRuuTlJMJWpLzfnZh+bXwk3+9h9JpyZfwPMqEIBQlUrsvhBZW5Tgds2+35RMuo1QDQDw6Mt86V/CTx/WifIS6QBML9ee6nUAZ//zrYNH8sDtt27pfyx/QAKcQzHXgZZvQAAAABJRU5ErkJggg=="
-			alt="Strinova Log"
+			alt="Strinova Logo"
 			class="h-5 w-5"
 		/>
 	</IconOption>
