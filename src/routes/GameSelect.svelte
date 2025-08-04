@@ -2,8 +2,6 @@
 	import { m } from '$lib/paraglide/messages.js';
 	import IconSelect from '$lib/components/ui/IconSelect.svelte';
 	import IconOption from '$lib/components/ui/IconOption.svelte';
-
-	let { signedIn = false } = $props();
 </script>
 
 <IconSelect
@@ -14,7 +12,7 @@
 			window.location.href = 'https://lemontv.win/';
 		}
 	}}
-	iconOnly={signedIn}
+	iconOnly
 >
 	<IconOption label={m.fate_trigger()} value="fate_trigger">
 		<img

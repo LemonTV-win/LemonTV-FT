@@ -122,7 +122,7 @@
 	<header
 		class="relative flex items-center justify-between border-b-1 border-white/20 bg-gradient-to-br from-[#363636] to-[#262626] px-4 py-4"
 	>
-		<div class="absolute inset-0 hidden items-center justify-center md:flex">
+		<div class="absolute inset-0 hidden items-center justify-center lg:flex">
 			<nav class="flex flex-1 items-center justify-center gap-1">
 				{#each navigation as { href, label }}
 					<a
@@ -147,10 +147,10 @@
 				<img src="/lemon.png" alt="LemonTV" class="h-10 w-10" />
 				LemonTV
 			</a>
-			<GameSelect signedIn={!!data.user} />
+			<GameSelect />
 		</div>
 
-		<button class="md:hidden" onclick={toggleMobileMenu}>
+		<button class="lg:hidden" onclick={toggleMobileMenu}>
 			{#if mobileMenuOpen}
 				<MaterialSymbolsCloseRounded class="h-8 w-8" />
 			{:else}
@@ -159,7 +159,7 @@
 		</button>
 
 		{#if data.user}
-			<div class="user-menu relative hidden md:block">
+			<div class="user-menu relative hidden lg:block">
 				<button
 					onclick={toggleUserMenu}
 					class="flex cursor-pointer items-center gap-2 rounded-full bg-[#ff6542]/10 p-1 hover:bg-[#ff6542]/25"
@@ -229,7 +229,7 @@
 				{/if}
 			</div>
 		{:else}
-			<div class="hidden items-center gap-2 md:flex">
+			<div class="hidden items-center gap-2 lg:flex">
 				<div class="flex items-center gap-2">
 					<MaterialSymbolsTranslateRounded class="h-6 w-6" />
 					<select
@@ -255,7 +255,7 @@
 
 	{#if mobileMenuOpen}
 		<nav
-			class="flex flex-col border-b-1 border-white/20 bg-gradient-to-br from-[#363636] to-[#262626] px-3 py-4 md:hidden"
+			class="flex flex-col border-b-1 border-white/20 bg-gradient-to-br from-[#363636] to-[#262626] px-3 py-4 lg:hidden"
 		>
 			{#each navigation as { href, label }}
 				<a
