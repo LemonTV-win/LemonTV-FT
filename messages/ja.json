@@ -1,4 +1,19 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from ja!"
+	"news": "ニュース",
+	"events": "イベント",
+	"teams": "チーム",
+	"players": "プレイヤー",
+	"community": "コミュニティ",
+	"title_description": "運命のトリガーeスポーツ情報サイト",
+	"about_tagline": "究極の運命のトリガーeスポーツハブ",
+	"profile_settings": "プロフィール設定",
+	"admin_panel": "管理パネル",
+	"logout": "ログアウト",
+	"language": "言語",
+	"spoiler_mode": "ネタバレ防止",
+	"sign_out": "サインアウト",
+	"footer_trademark": "{fate_trigger}は{saroasis}の商標です。このサイトは{fate_trigger}や{saroasis}とは関連していません。",
+	"Saroasis": "Saroasis Studio (Saros Network Technology)",
+	"fate_trigger": "運命のトリガー"
 }

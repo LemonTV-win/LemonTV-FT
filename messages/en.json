@@ -1,4 +1,22 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from en!"
+	"news": "News",
+	"events": "Events",
+	"teams": "Teams",
+	"players": "Players",
+	"community": "Community",
+	"title_description": "Fate Trigger Esports Coverage: Matches & Stats",
+	"about_tagline": "Your Ultimate Fate Trigger Esports Hub",
+	"profile_settings": "Profile Settings",
+	"admin_panel": "Admin Panel",
+	"logout": "Logout",
+	"language": "Language",
+	"spoiler_mode": "No Spoilers",
+	"sign_out": "Sign Out",
+	"footer_trademark": "{fate_trigger} is a trademark of {saroasis}. This site is not affiliated with or endorsed by {fate_trigger} nor {saroasis}.",
+	"Saroasis": "Saroasis Studio (Saros Network Technology)",
+	"fate_trigger": "Fate Trigger",
+	"sign_in": "Sign In",
+	"sign_up": "Sign Up",
+	"footer_fan_made": "A fan-made eSports media platform created and maintained by {linkStart}passionate Fate Trigger players{linkEnd}. We're dedicated to bringing you the latest news, events, and community content from the world of Fate Trigger."
 }

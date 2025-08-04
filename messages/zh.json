@@ -1,4 +1,19 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from zh!"
+	"news": "新闻",
+	"events": "赛事",
+	"teams": "队伍",
+	"players": "选手",
+	"community": "社区",
+	"title_description": "命运扳机 电竞赛事中心",
+	"about_tagline": "你的终极命运扳机 电竞中心",
+	"profile_settings": "个人设置",
+	"admin_panel": "管理面板",
+	"logout": "登出",
+	"language": "语言",
+	"spoiler_mode": "无剧透模式",
+	"sign_out": "登出",
+	"footer_trademark": "命运扳机是{saroasis}的商标。本网站与命运扳机或{saroasis}无关。",
+	"Saroasis": "萨罗斯工作室（萨罗斯网络科技）",
+	"fate_trigger": "命运扳机"
 }

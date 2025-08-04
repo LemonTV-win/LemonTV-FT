@@ -1,4 +1,19 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from zh-tw!"
+	"news": "新聞",
+	"events": "賽事",
+	"teams": "隊伍",
+	"players": "選手",
+	"community": "社區",
+	"title_description": "命運扳機 電競賽事中心",
+	"about_tagline": "你的終極命運扳機 電競中心",
+	"profile_settings": "個人設定",
+	"admin_panel": "管理面板",
+	"logout": "登出",
+	"language": "語言",
+	"spoiler_mode": "無劇透模式",
+	"sign_out": "登出",
+	"footer_trademark": "命運扳機是{saroasis}的商標。本網站與命運扳機或{saroasis}無關。",
+	"Saroasis": "薩羅斯工作室（薩羅斯網路科技）",
+	"fate_trigger": "命運扳機"
 }
