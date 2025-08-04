@@ -38,11 +38,11 @@
 		onkeydown={handleKeydown}
 		class={[
 			'peer inline-flex h-6 min-h-6 w-11 shrink-0 cursor-pointer items-center rounded-full px-0.5 transition-all duration-200',
-			'focus-visible:ring-2 focus-visible:ring-[#ff6542] focus-visible:ring-offset-2 focus-visible:ring-offset-[#262626] focus-visible:outline-none',
+			'focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-[#262626] focus-visible:outline-none',
 			'disabled:cursor-not-allowed disabled:opacity-50',
 			checked
-				? 'bg-[#ff6542] shadow-[inset_0_0_0_2px_rgba(255,101,66,0.3)] hover:bg-[#472f2a] hover:shadow-[inset_0_0_0_2px_rgba(255,101,66,0.3)]'
-				: 'bg-[#262626] shadow-[inset_0_0_0_2px_rgba(255,255,255,0.05)] hover:bg-[#ff6542]/30 hover:shadow-[inset_0_0_0_2px_rgba(255,101,66,0.3)]'
+				? 'bg-accent shadow-[inset_0_0_0_2px_rgba(255,101,66,0.3)] hover:bg-[#472f2a] hover:shadow-[inset_0_0_0_2px_rgba(255,101,66,0.3)]'
+				: 'bg-[#262626] shadow-[inset_0_0_0_2px_rgba(255,255,255,0.05)] hover:bg-accent/30 hover:shadow-[inset_0_0_0_2px_rgba(255,101,66,0.3)]'
 		]}
 		{disabled}
 		type="button"

@@ -82,7 +82,7 @@
 {#snippet selectButton()}
 	<button
 		class={[
-			'flex w-full cursor-pointer items-center rounded-md border border-white/20 bg-gradient-to-br from-[#363636] to-[#262626] py-2.5 text-left text-base text-white transition-all duration-200 hover:bg-[#ff6542]/10 hover:text-[#ff8a65] focus:border-[#ff6542] focus:ring-2 focus:ring-[#ff6542] focus:outline-none',
+			'flex w-full cursor-pointer items-center rounded-md border border-white/20 bg-gradient-to-br from-[#363636] to-[#262626] py-2.5 text-left text-base text-white transition-all duration-200 hover:bg-accent/10 hover:text-[#ff8a65] focus:border-accent focus:ring-2 focus:ring-accent focus:outline-none',
 			iconOnly && !isOpen ? 'justify-center px-2.5' : 'justify-between px-3',
 			optionClass
 		]}
@@ -139,9 +139,9 @@
 		}}
 		tabindex="0"
 		class={[
-			'flex cursor-pointer items-center gap-2 px-3 py-2.5 text-white transition-colors hover:bg-[#ff6542]/10 hover:text-[#ff8a65] focus:bg-[#ff6542]/10 focus:text-[#ff6542] focus:outline-none',
+			'flex cursor-pointer items-center gap-2 px-3 py-2.5 text-white transition-colors hover:bg-accent/10 hover:text-[#ff8a65] focus:bg-accent/10 focus:text-accent focus:outline-none',
 			value === option.value
-				? 'bg-[#ff6542]/20 text-[#ff6542] shadow-[inset_0_0_0_2px_rgba(255,101,66,0.3)]'
+				? 'bg-accent/20 text-accent shadow-[inset_0_0_0_2px_rgba(255,101,66,0.3)]'
 				: '',
 			optionClass
 		]}

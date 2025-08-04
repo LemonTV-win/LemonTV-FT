@@ -114,9 +114,9 @@
 						class={[
 							'rounded-md px-4 py-2 transition-all duration-200',
 							isActive(href)
-								? 'bg-[#ff6542]/20 font-semibold shadow-[inset_0_0_0_2px_rgba(255,101,66,0.3)]'
-								: 'hover:scale-105 hover:bg-[#ff6542]/10 hover:text-[#ff8a65]',
-							'focus:bg-[#ff6542]/10 focus:text-[#ff6542] focus:ring-2 focus:ring-[#ff6542] focus:outline-none'
+								? 'bg-accent/20 font-semibold shadow-[inset_0_0_0_2px_rgba(255,101,66,0.3)]'
+								: 'hover:scale-105 hover:bg-accent/10 hover:text-[#ff8a65]',
+							'focus:bg-accent/10 focus:text-accent focus:ring-2 focus:ring-accent focus:outline-none'
 						]}>{label()}</a
 					>
 				{/each}
@@ -126,7 +126,7 @@
 		<div class="flex items-center gap-4">
 			<a
 				href="/"
-				class="flex items-center gap-2 text-2xl font-bold transition-colors duration-300 hover:text-[#ff6542]"
+				class="flex items-center gap-2 text-2xl font-bold transition-colors duration-300 hover:text-accent"
 			>
 				<img src="/lemon.png" alt="LemonTV" class="h-10 w-10" />
 				LemonTV
@@ -146,7 +146,7 @@
 			<div class="user-menu relative hidden lg:block">
 				<button
 					onclick={toggleUserMenu}
-					class="flex cursor-pointer items-center gap-2 rounded-full bg-[#ff6542]/10 p-1 hover:bg-[#ff6542]/25"
+					class="flex cursor-pointer items-center gap-2 rounded-full bg-accent/10 p-1 hover:bg-accent/25"
 				>
 					<UserAvatar email={data.user.email} class="h-8 w-8" />
 				</button>
@@ -160,7 +160,7 @@
 						</div>
 						<a
 							href="/profile"
-							class="flex items-center gap-2 px-4 py-2 text-sm transition-colors hover:bg-[#ff6542]/10 hover:text-[#ff8a65]"
+							class="flex items-center gap-2 px-4 py-2 text-sm transition-colors hover:bg-accent/10 hover:text-[#ff8a65]"
 						>
 							<MaterialSymbolsSettingsRounded class="h-5 w-5" />
 							{m.profile_settings()}
@@ -168,7 +168,7 @@
 						{#if ['admin', 'editor'].some((role) => data.user?.roles.includes(role))}
 							<a
 								href="/admin"
-								class="flex items-center gap-2 px-4 py-2 text-sm transition-colors hover:bg-[#ff6542]/10 hover:text-[#ff8a65]"
+								class="flex items-center gap-2 px-4 py-2 text-sm transition-colors hover:bg-accent/10 hover:text-[#ff8a65]"
 							>
 								<MaterialSymbolsAdminPanelSettingsRounded class="h-5 w-5" />
 								{m.admin_panel()}
@@ -176,13 +176,13 @@
 						{/if}
 						<hr class="border-white/10" />
 						<LanguageSelect class="w-full px-4 py-2" compact />
-						<div class="flex items-center px-4 py-2 hover:bg-[#ff6542]/10">
+						<div class="flex items-center px-4 py-2 hover:bg-accent/10">
 							<Switch label={m.spoiler_mode()} bind:checked={settings.spoilerMode} />
 						</div>
 						<hr class="border-white/10" />
 						<button
 							type="submit"
-							class="flex w-full cursor-pointer items-center gap-2 px-4 py-2 text-sm transition-colors hover:bg-[#ff6542]/10 hover:text-[#ff8a65]"
+							class="flex w-full cursor-pointer items-center gap-2 px-4 py-2 text-sm transition-colors hover:bg-accent/10 hover:text-[#ff8a65]"
 							onclick={async () => {
 								await fetch('/auth/logout', {
 									method: 'POST',
@@ -203,7 +203,7 @@
 				<LanguageSelect />
 				<a
 					href={data.authURL}
-					class="z-50 cursor-pointer rounded-md border-1 border-[#ff6542] bg-[#ff6542]/10 px-4 py-2 text-[#ff6542] transition-colors duration-300 hover:bg-[#ff6542]/20"
+					class="z-50 cursor-pointer rounded-md border-1 border-accent bg-accent/10 px-4 py-2 text-accent transition-colors duration-300 hover:bg-accent/20"
 					>{m.sign_in()}</a
 				>
 			</div>
@@ -222,9 +222,9 @@
 					class={[
 						'ml-4 rounded-md px-3 py-2 text-lg transition-all duration-200',
 						isActive(href)
-							? 'bg-[#ff6542]/20 text-[#ff6542] shadow-[inset_0_0_0_2px_rgba(255,101,66,0.3)]'
-							: 'hover:scale-105 hover:bg-[#ff6542]/10 hover:text-[#ff8a65]',
-						'focus:bg-[#ff6542]/10 focus:text-[#ff6542] focus:ring-2 focus:ring-[#ff6542] focus:outline-none'
+							? 'bg-accent/20 text-accent shadow-[inset_0_0_0_2px_rgba(255,101,66,0.3)]'
+							: 'hover:scale-105 hover:bg-accent/10 hover:text-[#ff8a65]',
+						'focus:bg-accent/10 focus:text-accent focus:ring-2 focus:ring-accent focus:outline-none'
 					]}
 					onclick={toggleMobileMenu}>{label()}</a
 				>
@@ -238,7 +238,7 @@
 					<div class="flex flex-col gap-1.5 pl-4">
 						<a
 							href="/profile"
-							class="flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-[#ff6542]/10 hover:text-[#ff8a65]"
+							class="flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent/10 hover:text-[#ff8a65]"
 							onclick={toggleMobileMenu}
 						>
 							<MaterialSymbolsSettingsRounded class="h-5 w-5" />
@@ -247,7 +247,7 @@
 						{#if ['admin', 'editor'].some((role) => data.user?.roles.includes(role))}
 							<a
 								href="/admin"
-								class="flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-[#ff6542]/10 hover:text-[#ff8a65]"
+								class="flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent/10 hover:text-[#ff8a65]"
 								onclick={toggleMobileMenu}
 							>
 								<MaterialSymbolsAdminPanelSettingsRounded class="h-5 w-5" />
@@ -256,7 +256,7 @@
 						{/if}
 						<LanguageSelect class="w-full" />
 						<div
-							class="flex items-center gap-2 rounded-md px-3 py-2 transition-colors hover:bg-[#ff6542]/10 hover:text-[#ff8a65]"
+							class="flex items-center gap-2 rounded-md px-3 py-2 transition-colors hover:bg-accent/10 hover:text-[#ff8a65]"
 						>
 							<Switch label={m.spoiler_mode()} bind:checked={settings.spoilerMode} />
 						</div>
@@ -264,7 +264,7 @@
 						<form method="post" action="/?/logout" use:enhance>
 							<button
 								type="submit"
-								class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-[#ff6542]/10 hover:text-[#ff8a65]"
+								class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent/10 hover:text-[#ff8a65]"
 								onclick={toggleMobileMenu}
 							>
 								<MaterialSymbolsLogoutRounded class="h-5 w-5" />
@@ -278,14 +278,14 @@
 					<div class="flex flex-col gap-1.5 pl-4">
 						<LanguageSelect class="w-full" />
 						<div
-							class="flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-[#ff6542]/10 hover:text-[#ff8a65]"
+							class="flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent/10 hover:text-[#ff8a65]"
 						>
 							<Switch label={m.spoiler_mode()} bind:checked={settings.spoilerMode} />
 						</div>
 						<hr class="border-white/10" />
 						<a
 							href={data.authURL}
-							class="flex w-full cursor-pointer items-center justify-center rounded-md border-1 border-[#ff6542] bg-[#ff6542]/10 px-4 py-2 text-sm text-[#ff6542] transition-colors duration-300 hover:bg-[#ff6542]/20"
+							class="flex w-full cursor-pointer items-center justify-center rounded-md border-1 border-accent bg-accent/10 px-4 py-2 text-sm text-accent transition-colors duration-300 hover:bg-accent/20"
 							onclick={toggleMobileMenu}
 						>
 							{m.sign_in()}
@@ -307,13 +307,13 @@
 			<p class="mb-4 text-lg">
 				© 2025 <a
 					href="/about"
-					class="text-[#ff6542] transition-colors duration-100 hover:text-[#ff9e42] hover:underline"
+					class="text-accent transition-colors duration-100 hover:text-[#ff9e42] hover:underline"
 					>LemonTV</a
 				>
 			</p>
 			<p class="mb-4 text-sm text-white/60">
 				{@html m.footer_fan_made({
-					linkStart: `<a href="/about#team" class="underline hover:text-[#ff6542]/80 transition-colors duration-300" target="_blank">`,
+					linkStart: `<a href="/about#team" class="underline hover:text-accent/80 transition-colors duration-300" target="_blank">`,
 					linkEnd: `</a>`
 				})}
 			</p>
@@ -322,7 +322,7 @@
 					href="https://discord.gg/mY8DMatXM4"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="text-[#ff6542] transition-colors duration-300 hover:text-[#ff9e42]"
+					class="text-accent transition-colors duration-300 hover:text-[#ff9e42]"
 				>
 					<IconDiscord class="h-6 w-6" />
 				</a>
@@ -330,15 +330,15 @@
 					href="https://github.com/LemonTV-win/LemonTV-FT"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="text-[#ff6542] transition-colors duration-300 hover:text-[#ff9e42]"
+					class="text-accent transition-colors duration-300 hover:text-[#ff9e42]"
 				>
 					<IconGithub class="h-6 w-6" />
 				</a>
 			</div>
 			<p class="text-xs text-[rgba(250,250,250,0.6)]">
 				{@html m.footer_trademark({
-					fate_trigger: `<a href="https://fatetrigger.com/" class="underline hover:text-[#ff6542]/80 transition-colors duration-300" target="_blank">Fate Trigger</a>`,
-					saroasis: `<a href="${['zh', 'zh-tw'].includes(getLocale()) ? SAROASIS_URL_ZH : SAROASIS_URL_EN}" class="underline hover:text-[#ff6542]/80 transition-colors duration-300" target="_blank">${m.Saroasis()}</a>`
+					fate_trigger: `<a href="https://fatetrigger.com/" class="underline hover:text-accent/80 transition-colors duration-300" target="_blank">Fate Trigger</a>`,
+					saroasis: `<a href="${['zh', 'zh-tw'].includes(getLocale()) ? SAROASIS_URL_ZH : SAROASIS_URL_EN}" class="underline hover:text-accent/80 transition-colors duration-300" target="_blank">${m.Saroasis()}</a>`
 				})}
 			</p>
 		</div>

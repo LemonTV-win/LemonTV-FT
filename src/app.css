@@ -4,3 +4,7 @@
 body {
 	@apply bg-[#232323] text-[rgba(250,250,250,0.88)];
 }
+
+@theme {
+	--color-accent: #ff6542;
+}
