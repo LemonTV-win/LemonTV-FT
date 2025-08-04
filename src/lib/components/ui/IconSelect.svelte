@@ -73,15 +73,7 @@
 
 {@render children()}
 
-<div
-	class={[
-		'relative font-sans transition-all duration-200 ease-in-out',
-		className,
-		!hasWidthClass && !(iconOnly && !isOpen) ? 'w-64' : '', // Default width
-		iconOnly && !isOpen ? 'w-12' : '' // Collapsed iconOnly width
-	]}
-	bind:this={selectElement}
->
+{#snippet selectButton()}
 	<button
 		class={[
 			'flex w-full cursor-pointer items-center rounded-md border border-white/20 bg-gradient-to-br from-[#363636] to-[#262626] py-2.5 text-left text-base text-white transition-all duration-200 hover:bg-[#ff6542]/10 hover:text-[#ff8a65] focus:border-[#ff6542] focus:ring-2 focus:ring-[#ff6542] focus:outline-none',
@@ -100,7 +92,6 @@
 			<span
 				class={[
 					'ml-2 flex-grow overflow-hidden text-ellipsis whitespace-nowrap transition-all duration-200 ease-in-out',
-					// ✨ This is the fix for a smooth transition
 					iconOnly && !isOpen ? 'max-w-0 opacity-0' : 'mr-2 max-w-full opacity-100'
 				]}
 			>
@@ -125,6 +116,41 @@
 			</svg>
 		</span>
 	</button>
+{/snippet}
+
+{#snippet optionItem(option: Option)}
+	<li
+		role="option"
+		aria-selected={value === option.value}
+		onclick={() => handleSelect(option.value)}
+		onkeydown={(e) => {
+			if (e.key === 'Enter') handleSelect(option.value);
+		}}
+		tabindex="0"
+		class={[
+			'flex cursor-pointer items-center gap-2 px-3 py-2.5 text-white transition-colors hover:bg-[#ff6542]/10 hover:text-[#ff8a65] focus:bg-[#ff6542]/10 focus:text-[#ff6542] focus:outline-none',
+			value === option.value
+				? 'bg-[#ff6542]/20 text-[#ff6542] shadow-[inset_0_0_0_2px_rgba(255,101,66,0.3)]'
+				: ''
+		]}
+	>
+		{#if option.icon}
+			<span class="inline-flex items-center">{@render option.icon()}</span>
+		{/if}
+		{option.label}
+	</li>
+{/snippet}
+
+<div
+	class={[
+		'relative font-sans transition-all duration-200 ease-in-out',
+		className,
+		!hasWidthClass && !(iconOnly && !isOpen) ? 'w-64' : '', // Default width
+		iconOnly && !isOpen ? 'w-12' : '' // Collapsed iconOnly width
+	]}
+	bind:this={selectElement}
+>
+	{@render selectButton()}
 
 	{#if isOpen}
 		<ul
@@ -132,26 +158,7 @@
 			role="listbox"
 		>
 			{#each options as option (option.value)}
-				<li
-					role="option"
-					aria-selected={value === option.value}
-					onclick={() => handleSelect(option.value)}
-					onkeydown={(e) => {
-						if (e.key === 'Enter') handleSelect(option.value);
-					}}
-					tabindex="0"
-					class={[
-						'flex cursor-pointer items-center gap-2 px-3 py-2.5 text-white transition-colors hover:bg-[#ff6542]/10 hover:text-[#ff8a65] focus:bg-[#ff6542]/10 focus:text-[#ff6542] focus:outline-none',
-						value === option.value
-							? 'bg-[#ff6542]/20 text-[#ff6542] shadow-[inset_0_0_0_2px_rgba(255,101,66,0.3)]'
-							: ''
-					]}
-				>
-					{#if option.icon}
-						<span class="inline-flex items-center">{@render option.icon()}</span>
-					{/if}
-					{option.label}
-				</li>
+				{@render optionItem(option)}
 			{/each}
 		</ul>
 	{/if}
