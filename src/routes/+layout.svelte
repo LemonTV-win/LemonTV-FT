@@ -19,6 +19,7 @@
 	import { enhance } from '$app/forms';
 	import { page } from '$app/state';
 	import { SITE_CANONICAL_HOST, SAROASIS_URL_EN, SAROASIS_URL_ZH } from '$lib/consts';
+	import GameSelect from './GameSelect.svelte';
 
 	let { data, children }: LayoutProps = $props();
 
@@ -121,13 +122,16 @@
 	<header
 		class="flex items-center justify-between border-b-1 border-white/20 bg-gradient-to-br from-[#363636] to-[#262626] px-4 py-4"
 	>
-		<a
-			href="/"
-			class="flex items-center gap-2 text-2xl font-bold transition-colors duration-300 hover:text-[#ff6542]"
-		>
-			<img src="/favicon.svg" alt="LemonTV" class="h-10 w-10" />
-			LemonTV
-		</a>
+		<div class="flex items-center gap-4">
+			<a
+				href="/"
+				class="flex items-center gap-2 text-2xl font-bold transition-colors duration-300 hover:text-[#ff6542]"
+			>
+				<img src="/favicon.svg" alt="LemonTV" class="h-10 w-10" />
+				LemonTV
+			</a>
+			<GameSelect signedIn={!!data.user} />
+		</div>
 
 		<button class="md:hidden" onclick={toggleMobileMenu}>
 			{#if mobileMenuOpen}
@@ -137,7 +141,7 @@
 			{/if}
 		</button>
 
-		<nav class="hidden items-center gap-1 md:flex">
+		<nav class="hidden flex-1 items-center justify-center gap-1 md:flex">
 			{#each navigation as { href, label }}
 				<a
 					{href}
