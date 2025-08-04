@@ -144,7 +144,7 @@
 				href="/"
 				class="flex items-center gap-2 text-2xl font-bold transition-colors duration-300 hover:text-[#ff6542]"
 			>
-				<img src="/favicon-96x96.png" alt="LemonTV" class="h-10 w-10" />
+				<img src="/lemon.png" alt="LemonTV" class="h-10 w-10" />
 				LemonTV
 			</a>
 			<GameSelect signedIn={!!data.user} />
