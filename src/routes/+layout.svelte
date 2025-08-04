@@ -18,7 +18,7 @@
 	import type { LayoutProps } from './$types';
 	import { enhance } from '$app/forms';
 	import { page } from '$app/state';
-	import { SAROASIS_URL_EN, SAROASIS_URL_ZH } from '$lib/consts';
+	import { SITE_CANONICAL_HOST, SAROASIS_URL_EN, SAROASIS_URL_ZH } from '$lib/consts';
 
 	let { data, children }: LayoutProps = $props();
 
@@ -82,6 +82,40 @@
 	let pageTitle = $derived(page.data.metadata?.title || `FTLemon – ${m.title_description()}`);
 	let pageDescription = $derived(page.data.metadata?.description || m.about_tagline());
 </script>
+
+<svelte:head>
+	<!-- Basic HTML Metadata -->
+	<title>{pageTitle}</title>
+	<meta name="description" content={pageDescription} />
+	<meta name="keywords" content="LemonTV, Strinova, Esports, News, Community, Tournaments" />
+	<link rel="canonical" href={`${SITE_CANONICAL_HOST}${page.url.pathname}`} />
+
+	<!-- Open Graph -->
+	<meta property="og:site_name" content="LemonTV" />
+	<meta property="og:url" content={`${SITE_CANONICAL_HOST}${page.url.pathname}`} />
+	<meta property="og:title" content={pageTitle} />
+	<meta property="og:description" content={pageDescription} />
+	<meta property="og:type" content="website" />
+	<!-- TODO: Generate og:image for sub pages such as Team / Player -->
+	<meta property="og:image" content="https://lemontv.win/screenshot.png" />
+
+	<!-- Twitter Card -->
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:title" content={pageTitle} />
+	<meta property="twitter:description" content={pageDescription} />
+	<meta property="twitter:creator" content="@mkpoli" />
+	<meta property="twitter:image" content="https://lemontv.win/screenshot.png" />
+	<meta property="twitter:url" content={`${SITE_CANONICAL_HOST}${page.url.pathname}`} />
+
+	<!-- Schema.org Structured Data -->
+	{@html `<script type="application/ld+json">${JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: 'LemonTV',
+		url: SITE_CANONICAL_HOST,
+		description: m.about_tagline()
+	})}</script>`}
+</svelte:head>
 
 <div class="flex min-h-dvh flex-col">
 	<header
